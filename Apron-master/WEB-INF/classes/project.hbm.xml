@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.beans">
+
+	<class name="Employee" table="EMPLOYEE">
+		<id name="id" column="ID">
+			<generator class="assigned" />
+		</id>
+		<property name="name" column="NAME" />
+		<property name="email" column="EMAIL" unique="true" not-null="true" />
+		<property name="dept" column="DEPT" />
+		<property name="dateOfJoining" column="DATE_OF_JOINING" type="date" />
+		<property name="role" column="ROLE" />
+		<property name="status" column="STATUS" />
+	
+		<joined-subclass name="Login" table="LOGIN">
+			<key column="ID"></key>
+			<property name="username" column="username" />
+			<property name="password" column="PASSWORD" />
+		</joined-subclass>
+	</class>
+	
+	<class name="Apron" table="APRON">
+		<id name="id" column="ID">
+			<generator class="identity" />
+		</id>
+		<property name="status" column="STATUS" not-null="true"/>
+		<property name="airlineId" column="AIRLINE_ID" />
+	</class>
+
+</hibernate-mapping>
